@@ -2,6 +2,11 @@ const createElement = (arr) => {
   const htmlElement = arr.map((num) => `<span class="btn">${num}</span>`);
   return htmlElement.join("");
 };
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = "en-EN"; // English
+  window.speechSynthesis.speak(utterance);
+}
 
 const manageSpinner = (statu) => {
   if (statu == true) {
@@ -110,7 +115,9 @@ const displayLevel = (words) => {
           })" class="btn bg-[#eaeced] hover:bg-red-300">
             <i class="fa-solid fa-circle-question"></i>
           </button>
-          <button class="btn bg-[#ebeeef] hover:bg-red-300">
+          <button onclick="pronounceWord('${
+            word.word
+          }')" class="btn bg-[#ebeeef] hover:bg-red-300">
             <i class="fa-solid fa-volume-high"></i>
           </button>
         </div>
